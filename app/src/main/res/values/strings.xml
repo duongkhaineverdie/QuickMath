@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Quick Math</string>
+    <string name="new_game">New game</string>
+    <string name="title_home">Primary skills</string>
+    <string name="high_score">High score: %d</string>
+    <string name="addition">Addition</string>
+    <string name="subtraction">Subtraction</string>
+    <string name="multiplication">Multiplication</string>
+    <string name="division">Division</string>
+    <string name="title_level_regex">Level %d</string>
+</resources>

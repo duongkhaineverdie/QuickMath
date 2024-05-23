@@ -1,14 +1,13 @@
 package com.mathtech.quickmath.presentation.ui.quickmathgame
 
 import android.util.Log
-import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mathtech.quickmath.data.datastore.HighScoreState
 import com.mathtech.quickmath.data.datastore.HighScoreWithKey
-import com.mathtech.quickmath.domain.interactors.GetHighScoreFromDSUseCase
-import com.mathtech.quickmath.domain.interactors.SaveHighScoreDSUseCase
+import com.mathtech.quickmath.domain.interactors.GetMathScoreStateUseCase
+import com.mathtech.quickmath.domain.interactors.SaveMathScoreWithKeyUseCase
 import com.mathtech.quickmath.utils.Constants
 import com.mathtech.quickmath.utils.TAG
 import com.mathtech.quickmath.utils.TypeMath
@@ -24,8 +23,8 @@ import kotlin.math.roundToInt
 
 class QuickMathGameViewModel(
     savedStateHandle: SavedStateHandle,
-    val getHighScoreFromDSUseCase: GetHighScoreFromDSUseCase,
-    val saveHighScoreDSUseCase: SaveHighScoreDSUseCase,
+    val getMathScoreStateUseCase: GetMathScoreStateUseCase,
+    val saveMathScoreWithKeyUseCase: SaveMathScoreWithKeyUseCase,
 ) : ViewModel() {
 
     private val _stateFlow: MutableStateFlow<QuickMathUiState> =
@@ -81,7 +80,7 @@ class QuickMathGameViewModel(
 
     private fun getHighScoreFromDS() {
         viewModelScope.launch {
-            getHighScoreFromDSUseCase(Unit).collectLatest { result ->
+            getMathScoreStateUseCase(Unit).collectLatest { result ->
                 result.onSuccess { value ->
                     _stateFlow.update {
                         it.copy(
@@ -294,7 +293,7 @@ class QuickMathGameViewModel(
     private fun saveHighScore() {
         val score = stateFlow.value.levelGame - 1
         viewModelScope.launch {
-            saveHighScoreDSUseCase(
+            saveMathScoreWithKeyUseCase(
                 HighScoreWithKey(
                     highScore = score,
                     key = when (stateFlow.value.typeMathGame) {

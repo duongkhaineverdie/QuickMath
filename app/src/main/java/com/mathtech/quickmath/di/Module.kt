@@ -2,8 +2,8 @@ package com.mathtech.quickmath.di
 
 import com.mathtech.quickmath.data.datastore.DataStoreManager
 import com.mathtech.quickmath.data.repository.IRepository
-import com.mathtech.quickmath.domain.interactors.GetHighScoreFromDSUseCase
-import com.mathtech.quickmath.domain.interactors.SaveHighScoreDSUseCase
+import com.mathtech.quickmath.domain.interactors.GetMathScoreStateUseCase
+import com.mathtech.quickmath.domain.interactors.SaveMathScoreWithKeyUseCase
 import com.mathtech.quickmath.domain.repository.RepositoryImpl
 import com.mathtech.quickmath.presentation.ui.home.HomeViewModel
 import com.mathtech.quickmath.presentation.ui.quickmathgame.QuickMathGameViewModel
@@ -26,8 +26,8 @@ val dataSourceModule = module {
 }
 
 val useCaseModule = module {
-    factory { GetHighScoreFromDSUseCase(get(), get()) }
-    factory { SaveHighScoreDSUseCase(get(), get()) }
+    factory { GetMathScoreStateUseCase(get(), get()) }
+    factory { SaveMathScoreWithKeyUseCase(get(), get()) }
 }
 
 val repositoryModule = module {

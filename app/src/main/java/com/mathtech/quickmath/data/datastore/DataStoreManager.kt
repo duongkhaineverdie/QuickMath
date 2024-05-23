@@ -23,7 +23,7 @@ class DataStoreManager(private val context: Context) {
     }
 
     suspend fun storeHighScoreWithKey(score: Int, keyString: Preferences.Key<Int>) {
-        Log.d(TAG, "storeHighScore: $score")
+        Log.d(TAG, "storeHighScoreWithKey: $score - ${keyString.name}")
         context.dataStore.edit {
             it[keyString] = score
         }

@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.mathtech.quickmath.domain.navigation.Destination
-import com.mathtech.quickmath.domain.navigation.NavHostNoteApp
+import com.mathtech.quickmath.domain.navigation.NavHostQuickMath
 import com.mathtech.quickmath.domain.navigation.composable
 import com.mathtech.quickmath.presentation.ui.home.HomeScreen
 import com.mathtech.quickmath.presentation.ui.theme.QuickMathTheme
@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun SetupNavigation(navController: NavHostController) {
-    NavHostNoteApp(navController = navController, startDestination = Destination.HomeScreen) {
+    NavHostQuickMath(navController = navController, startDestination = Destination.HomeScreen) {
         composable(Destination.HomeScreen) { HomeScreen(navController) }
         composable(Destination.QuickMathScreen) { QuickMathGameScreen(navController) }
     }

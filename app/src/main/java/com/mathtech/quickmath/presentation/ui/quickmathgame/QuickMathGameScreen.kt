@@ -50,6 +50,7 @@ import androidx.navigation.NavHostController
 import com.mathtech.quickmath.R
 import com.mathtech.quickmath.presentation.ui.component.CustomDialog
 import com.mathtech.quickmath.presentation.ui.quickmathgame.components.QuickMathAnswerButton
+import com.mathtech.quickmath.presentation.ui.quickmathgame.components.QuickMathDialogGameOver
 import com.mathtech.quickmath.presentation.ui.theme.QuickMathTheme
 import com.mathtech.quickmath.utils.TAG
 import com.mathtech.quickmath.utils.TypeMath
@@ -72,6 +73,7 @@ fun QuickMathGameScreen(navController: NavHostController) {
         listNumberQuestion = uiState.listNumberQuestion,
         typeMathGame = uiState.typeMathGame,
         isDefeat = uiState.isDefeat,
+        onExitGame = { navController.popBackStack() }
     )
 }
 
@@ -85,6 +87,7 @@ fun QuickMathGameScreen(
     listNumberQuestion: List<Int>,
     onClickAnswerButton: (Int) -> Unit,
     onNewGame: () -> Unit,
+    onExitGame: () -> Unit,
     typeMathGame: String = TypeMath.ADD.name,
     isDefeat: Boolean = false,
 ) {
@@ -215,43 +218,19 @@ fun QuickMathGameScreen(
         Spacer(modifier = Modifier.height(20.dp))
     }
 
-    CustomDialog(showDialog = isDefeat, onDismissRequest = onNewGame) {
-        Box(
-            contentAlignment = Alignment.BottomCenter,
-            modifier = Modifier.background(Color.Transparent)
-        ) {
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                painter = painterResource(id = R.drawable.img_defeat),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-            )
-            Card(
-                modifier = Modifier.padding(bottom = 80.dp),
-                onClick = onNewGame,
-                shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = Color(0xFF122131),
-                    contentColor = Color.White
-                ),
-                elevation = CardDefaults.cardElevation(
-                    defaultElevation = 30.dp
-                )
-            ) {
-                Text(
-                    modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp),
-                    text = stringResource(id = R.string.new_game),
-                    style = MaterialTheme.typography.titleLarge
-                )
-            }
-        }
-    }
+    QuickMathDialogGameOver(
+        showDialog = isDefeat,
+        onDismissRequest = { /*TODO*/ },
+        onReload = onNewGame,
+        onExit = onExitGame,
+        containerColor = Color(0xFF5F7CFF),
+        textScore = levelGame - 1
+    )
 }
 
 @Composable
-@Preview(name = "NumberGuessingGame", showSystemUi = true)
-private fun TrainMemoryGameScreenPreview() {
+@Preview(name = "QuickMathGameScreen", showSystemUi = true)
+private fun QuickMathGameScreenPreview() {
     QuickMathTheme {
         QuickMathGameScreen(
             modifier = Modifier
@@ -262,6 +241,7 @@ private fun TrainMemoryGameScreenPreview() {
             onNewGame = {/* no-op */ },
             typeMathGame = TypeMath.ADD.name,
             listNumberQuestion = arrayListOf(343,355),
+            onExitGame = {/* no-op */}
         )
     }
 }

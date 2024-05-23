@@ -5,6 +5,6 @@ import com.mathtech.quickmath.data.datastore.HighScoreState
 import kotlinx.coroutines.flow.Flow
 
 interface IRepository {
-    fun getHighScoreState(): Flow<HighScoreState>
-    suspend fun saveHighScoreDS(score: Int, key: Preferences.Key<Int>)
+    fun getMathScoreState(): Flow<HighScoreState>
+    suspend fun saveMathScoreWithKey(score: Int, key: Preferences.Key<Int>)
 }

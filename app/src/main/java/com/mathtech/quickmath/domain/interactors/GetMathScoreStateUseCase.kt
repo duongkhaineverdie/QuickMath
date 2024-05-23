@@ -6,10 +6,9 @@ import com.mathtech.quickmath.domain.interactors.type.BaseUseCaseFlow
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 
-class GetHighScoreFromDSUseCase(
+class GetMathScoreStateUseCase(
     private val repository: IRepository,
     dispatcher: CoroutineDispatcher,
 ) : BaseUseCaseFlow<Unit, HighScoreState>(dispatcher) {
-    override suspend fun build(param: Unit): Flow<HighScoreState> = repository.getHighScoreState()
-
+    override suspend fun build(param: Unit): Flow<HighScoreState> = repository.getMathScoreState()
 }

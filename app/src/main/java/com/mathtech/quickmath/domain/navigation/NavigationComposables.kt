@@ -11,7 +11,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 
 @Composable
-fun NavHostNoteApp(
+fun NavHostQuickMath(
     navController: NavHostController,
     startDestination: Destination,
     modifier: Modifier = Modifier,

@@ -8,4 +8,7 @@
     <string name="multiplication">Multiplication</string>
     <string name="division">Division</string>
     <string name="title_level_regex">Level %d</string>
+    <string name="try_again">Try again</string>
+    <string name="exit">Exit</string>
+    <string name="your_score">Your score</string>
 </resources>
